@@ -1,0 +1,21 @@
+# Define inputs for the workflow.
+inputs:
+  - name: reference_data
+    metadata: https://data.nextstrain.org/files/ncov/open/reference/metadata.tsv.xz
+    aligned: https://data.nextstrain.org/files/ncov/open/reference/aligned.fasta.xz
+  - name: select_data
+    metadata: data/subsampled_metadata_gisaid.tsv.gz
+    sequences: data/subsampled_sequences_gisaid.fasta.gz
+
+refine:
+  root: "Wuhan-Hu-1/2019"
+  
+builds:
+  select_build:
+    title: "Select build"
+    subsampling_scheme: select_scheme
+    
+subsampling:
+  select_scheme:
+    custom_sample:
+      query: --query "(select_data == 'yes')"

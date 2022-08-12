@@ -1,0 +1,21 @@
+# Define inputs for the workflow.
+inputs:
+  - name: reference_data
+    metadata: https://data.nextstrain.org/files/ncov/open/reference/metadata.tsv.xz
+    aligned: https://data.nextstrain.org/files/ncov/open/reference/aligned.fasta.xz
+  - name: alldata_gisaid
+    metadata: data/metadata_gisaid.tsv.gz
+    sequences: data/sequences_gisaid.fasta.gz
+
+refine:
+  root: "Wuhan-Hu-1/2019"
+  
+builds:
+  all_gisaid:
+    title: "all gisaid build"
+    subsampling_scheme: alldata_scheme
+    
+subsampling:
+  alldata_scheme:
+    custom_sample:
+      query: --query "(alldata_gisaid == 'yes')"

@@ -1,0 +1,26 @@
+# Define inputs for the workflow.
+inputs:
+  - name: reference_data
+    metadata: https://data.nextstrain.org/files/ncov/open/reference/metadata.tsv.xz
+    aligned: https://data.nextstrain.org/files/ncov/open/reference/aligned.fasta.xz
+  - name: mycustom_data
+    metadata: data/mycustom_metadata.tsv
+    sequences: data/mycustom_sequences.fasta
+  - name: background_data
+    metadata: data/background_metadata_gisaid.tsv.gz
+    sequences: data/background_sequences_gisaid.fasta.gz
+
+refine:
+  root: "Wuhan-Hu-1/2019"
+  
+builds:
+  custom_with_background:
+    title: "my custom data and selected background data build"
+    subsampling_scheme: custom_with_background_scheme
+    
+subsampling:
+  custom_with_background_scheme:
+    custom_sample:
+      query: --query "(mycustom_data == 'yes')"
+    background:
+      query: --query "(background_data == 'yes')"
