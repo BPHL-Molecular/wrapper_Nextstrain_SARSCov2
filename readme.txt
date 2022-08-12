@@ -1,6 +1,13 @@
+What is it?
+Wrapper_Nextstrain_SARSCov2 is a wrapper for Nextstrain SARSCov-2 workflow. Nextstrain SARSCov-2 workflow can be used for VISUALIZATION & INTERPRETATION of SARSCov-2 samples from the world. However, users have to tediously modify config files and running commands every time it is used. The wrapper program allows users to save this tedious step. All it takes is a command in the command line.
 
 
-Steps of install and running:
+What does it do?
+The wrapper have two main functions: 1) Select some samples in current GISAID SARSCov-2 database for analysis and visualizaiton. 
+                                     2) Use your own data, plus some data from GISAID SARSCov-2 database, and then compare, analyze and visualize them.
+
+
+How to do?
 1. Register for a GISAID (https://gisaid.org/) account for data download.
 
 2. Install Nextstrain components:
