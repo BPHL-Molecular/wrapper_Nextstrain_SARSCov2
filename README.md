@@ -14,8 +14,8 @@ Steps of install and running:
 4. Download Nextstrain SARS-CoV-2 workflow from GitHub:
 	$git clone https://github.com/nextstrain/ncov.git
 
-5. Download the wrapper from GitHub (https://github.com/BPHL-Molecular/)
-	$
+5. Download the wrapper from GitHub (https://github.com/BPHL-Molecular/wrapper_Nextstrain_SARSCov2.git)
+	$git clone https://github.com/BPHL-Molecular/wrapper_Nextstrain_SARSCov2.git
 
 6. Change directory to the downloaded directory and move all wrapper files to the directory /ncov
 	$cd ncov  #if the downloaded directory is named ncov, you can use this command.
