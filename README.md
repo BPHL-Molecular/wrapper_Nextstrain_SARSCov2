@@ -9,33 +9,40 @@ Steps of install and running:
 	In this pipeline we select native install of Nextstrain. The install details can be found in  https://docs.nextstrain.org/en/latest/install.html
 
 3. Actvate the nextstrain conda environment:
+	
 	$conda activate nextstrain
 
 4. Download Nextstrain SARS-CoV-2 workflow from GitHub:
+	
 	$git clone https://github.com/nextstrain/ncov.git
 
 5. Download the wrapper from GitHub (https://github.com/BPHL-Molecular/wrapper_Nextstrain_SARSCov2.git)
+	
 	$git clone https://github.com/BPHL-Molecular/wrapper_Nextstrain_SARSCov2.git
 
 6. Change directory to the downloaded directory and move all wrapper files to the directory /ncov
-	$cd ncov  #if the downloaded directory is named ncov, you can use this command.
+	
+	$cd ncov               #if the downloaded directory is named ncov, you can use this command.
+	
 	$move <your path>/wrapper_Nextstrain_SARSCoV2/* <your path>/ncov/
 
 6. Prepare GISAID data for the Augur of Nextstrain:
-	6.1 Download all SARS-CoV-2 metadata and sequences from GISAID to the data/ directory. (Download details can be found in https://docs.nextstrain.org/projects/ncov/en/latest/guides/data-prep/gisaid-full.html)
-	   Then change the two file names to "sequences_fasta_original.tar.xz" and "metadata_tsv_original.tar.xz"
+
+6.1 Download all SARS-CoV-2 metadata and sequences from GISAID to the data/ directory. (Download details can be found in https://docs.nextstrain.org/projects/ncov/en/latest/guides/data-prep/gisaid-full.html). Then change the two file names to "sequences_fasta_original.tar.xz" and "metadata_tsv_original.tar.xz"
 		
-	6.2 Clean original sequence data and metadata
-		$sbatch clean_database.sh  
+6.2 Clean original sequence data and metadata
+
+$sbatch clean_database.sh  
 		  
-		Note: Use this command if HPC SLURM is used. If the linux system does not use SLURM, just run the command "bash clean_database.sh". 
+Note: Use this command if HPC SLURM is used. If the linux system does not use SLURM, just run the command "bash clean_database.sh". 
 		
-7. The step is optional. If you want to only select some data from the GISAID datasets for analysis, please ignore this step. If you want to use your custom data and some background data selected from the GISAID datasets, or only your custom data, you need to perform this step.
+7. The step is optional. If you want to only select some data from the GISAID datasets for analysis, please ignore this step. If you want to use your custom data and some background data selected from the GISAID datasets, or only your custom data, you need to perform this step. 
 	In this step, you should generate two files for your custom data. One is sequence file in fasta format, the other is metadata file in tsv format. Then move them to "/data" directory and rename them as "mycustom_metadata.tsv" and "mycustom_sequences.fasta". For each column in metadata file, leave empty if you do not have information to fill. 
 	Two example files ("example_mycustom_metadata.tsv" and "example_mycustom_sequences.fasta") can be found in "/ncov" directory.
 
 8. Option A: Select region-specific data from the GISAID databsets generated in Setp6, and then build Nextstrain workflow
-			$sbatch select_specific_data.sh [-l min-date in format YYYY-MM-DD] [-u max-date in format YYYY-MM-DD] [-s the number of subsamples ] [-h help] [-q specific-region]
+
+	$sbatch select_specific_data.sh [-l min-date in format YYYY-MM-DD] [-u max-date in format YYYY-MM-DD] [-s the number of subsamples ] [-h help] [-q specific-region]
 		
 		Note: -l and -u are the limit of date, such as "-l 2021-10-05 -u 2022-04-23"
 		      -s is the number of subsamples, such as "-s 100" 
